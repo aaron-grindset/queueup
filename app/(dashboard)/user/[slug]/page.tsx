@@ -90,6 +90,7 @@ export default function UserProfilePage() {
     setMatchError(null);
     getMatchHistory({ riotId: profile.riotId })
       .then((result) => {
+        if (!result) return;
         setMatches(result.matches);
         setMastery(result.mastery);
         if (result.error) setMatchError(result.error);
