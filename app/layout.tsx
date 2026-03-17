@@ -28,6 +28,14 @@ export default function RootLayout({
               colorBackground: "#0f0f23",
               colorInputBackground: "#1a1a3e",
               colorText: "#ffffff",
+              colorTextOnPrimaryBackground: "#ffffff",
+              colorTextSecondary: "#a0a0b8",
+            },
+            elements: {
+              socialButtonsBlockButton: {
+                color: "#ffffff",
+                borderColor: "#2a2a4e",
+              },
             },
           }}
         >

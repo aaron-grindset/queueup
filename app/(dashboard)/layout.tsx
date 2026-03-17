@@ -21,7 +21,7 @@ import { useModal } from "@/app/ModalProvider";
 
 const tabs = [
   { href: "/my-tournaments", label: "Dashboard" },
-  { href: "/", label: "Tournaments" },
+  { href: "/tournaments", label: "Tournaments" },
   { href: "/teams", label: "Teams" },
 ];
 
@@ -77,15 +77,12 @@ export default function DashboardLayout({
         {/* Top nav */}
         <nav className="bg-[#0f0f23] border-b border-[#1a1a3e] px-6 py-3">
           <div className="max-w-6xl mx-auto flex items-center gap-4">
-            <Link href="/" className="shrink-0 text-xl tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-[#5865F2] to-[#8b95f5]" style={{ fontFamily: "var(--font-logo)" }}>
+            <Link href="/my-tournaments" className="shrink-0 text-xl tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-[#5865F2] to-[#8b95f5]" style={{ fontFamily: "var(--font-logo)" }}>
               QUEUE UP
             </Link>
             <div className="flex gap-6 ml-auto">
               {tabs.map((tab) => {
-                const isActive =
-                  tab.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(tab.href);
+                const isActive = pathname.startsWith(tab.href);
                 return (
                   <Link
                     key={tab.href}

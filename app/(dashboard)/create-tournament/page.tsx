@@ -40,7 +40,7 @@ export default function CreateTournamentPage() {
         capacity,
         teamSize,
       });
-      router.push("/");
+      router.push("/tournaments");
     } catch (err: any) {
       alert({ title: "Error", message: err.message });
     }
