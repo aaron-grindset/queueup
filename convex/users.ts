@@ -154,6 +154,37 @@ export const getMatchHistory = action({
           );
           if (!participant) return null;
 
+          const ROLE_MAP: Record<string, string> = {
+            TOP: "Top",
+            JUNGLE: "Jungle",
+            MIDDLE: "Mid",
+            BOTTOM: "Bot",
+            UTILITY: "Support",
+          };
+
+          const QUEUE_MAP: Record<number, string> = {
+            420: "Ranked Solo",
+            440: "Ranked Flex",
+            450: "ARAM",
+            400: "Normal Draft",
+            430: "Normal Blind",
+            490: "Quickplay",
+            700: "Clash",
+            720: "ARAM Clash",
+            830: "Co-op Intro",
+            840: "Co-op Beginner",
+            850: "Co-op Intermediate",
+            900: "URF",
+            1020: "One for All",
+            1300: "Nexus Blitz",
+            1400: "Ultimate Spellbook",
+            1700: "Arena",
+            1900: "Pick URF",
+          };
+
+          const mapRole = (r: string) => ROLE_MAP[r] ?? r;
+          const queueName = QUEUE_MAP[data.info.queueId] ?? data.info.gameMode;
+
           const players = data.info.participants.map((p: any) => ({
             summonerName: p.riotIdGameName || p.summonerName,
             tagLine: p.riotIdTagline || "",
@@ -168,7 +199,7 @@ export const getMatchHistory = action({
             level: p.champLevel,
             win: p.win,
             teamId: p.teamId,
-            role: p.teamPosition || p.individualPosition || "",
+            role: mapRole(p.teamPosition || p.individualPosition || ""),
             puuid: p.puuid,
             items: [p.item0, p.item1, p.item2, p.item3, p.item4, p.item5, p.item6],
           }));
@@ -180,10 +211,10 @@ export const getMatchHistory = action({
             deaths: participant.deaths,
             assists: participant.assists,
             win: participant.win,
-            gameMode: data.info.gameMode,
+            gameMode: queueName,
             gameDuration: data.info.gameDuration,
             gameCreation: data.info.gameCreation,
-            role: participant.teamPosition || participant.role,
+            role: mapRole(participant.teamPosition || participant.role || ""),
             cs: participant.totalMinionsKilled + participant.neutralMinionsKilled,
             players,
             viewerPuuid: account.puuid,
