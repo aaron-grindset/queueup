@@ -154,7 +154,7 @@ export const getMatchHistory = action({
           const participant = data.info.participants.find(
             (p: any) => p.puuid === account.puuid
           );
-          if (!participant) return null;
+          if (!participant) { matches.push(null); continue; }
 
           const ROLE_MAP: Record<string, string> = {
             TOP: "Top",
@@ -206,7 +206,7 @@ export const getMatchHistory = action({
             items: [p.item0, p.item1, p.item2, p.item3, p.item4, p.item5, p.item6],
           }));
 
-          return {
+          matches.push({
             matchId,
             champion: participant.championName,
             kills: participant.kills,
