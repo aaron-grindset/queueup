@@ -7,7 +7,7 @@ export default function SignInPage() {
       <p className="text-gray-400 text-lg mb-12">
         Tournament brackets, simplified.
       </p>
-      <SignIn afterSignInUrl="/my-tournaments" />
+      <SignIn fallbackRedirectUrl="/my-tournaments" />
     </div>
   );
 }

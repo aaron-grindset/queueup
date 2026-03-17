@@ -68,7 +68,7 @@ export default function DashboardLayout({
     const ok = await confirm({ title: "Sign out?", confirmLabel: "Sign Out", variant: "danger" });
     if (!ok) return;
     await signOut();
-    router.push("/sign-in");
+    router.push("/");
   };
 
   return (
